@@ -24,12 +24,18 @@ CONFIG_LV_COLOR_DEPTH_16=y
 CONFIG_LV_DEF_REFR_PERIOD=20
 CONFIG_LV_FONT_MONTSERRAT_14=y
 CONFIG_LV_FONT_MONTSERRAT_20=y
+# 番茄钟倒计时大字号(字体常量进 Flash,不占 LVGL 内存池)。
+CONFIG_LV_FONT_MONTSERRAT_48=y
 # LVGL 内置 malloc 池大小(KB)。它是独立静态区、不与系统堆共享,配大了会白白占用 RAM。
 # 本 demo UI 简单,24KB 足够;若自建复杂界面出现绘制卡死/看门狗,调大此值。
 CONFIG_LV_MEM_SIZE_KILOBYTES=24
 
 # --- 系统 ---
 CONFIG_FREERTOS_HZ=1000
+# 三键共用 GPIO0(10k 外部上拉)作深睡 LOW 唤醒脚。IDF 默认会在入睡时给唤醒脚
+# 自动加内部上/下拉(LOW 触发=内部下拉),与外部 10k 上拉叠加会拖低焊盘电平,
+# 导致"入睡即自唤醒"(esp_sleep.h 文档明确要求外部电阻场景关闭此选项)。
+CONFIG_ESP_SLEEP_GPIO_ENABLE_INTERNAL_RESISTORS=n
 
 # --- Bluetooth LE / NimBLE ---
 # ESP32-C3 仅支持 BLE；示例只启用单连接 peripheral 所需的最小 host 配置。

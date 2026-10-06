@@ -1,16 +1,11 @@
+# 三键番茄钟(衍生应用):demo_*.c / ui_pixel*.c 留在仓库作参考范本,
+# 不再编入本固件(host 测试仍直接从 tests/ 引用它们)。
 idf_component_register(
     SRCS "main.c"
-         "demo_navigation.c"
-         "ui_pixel.c"
-         "ui_pixel_math.c"
-         "demo_display.c"
-         "demo_button.c"
-         "demo_audio.c"
-         "demo_battery.c"
-         "demo_radio.c"
-         "demo_wifi.c"
-         "demo_ble.c"
-         "demo_low_power.c"
+         "pomodoro_core.c"
+         "pomodoro_app.c"
+         "pomo_cjk_16.c"
+         "pomo_cjk_48.c"
     INCLUDE_DIRS "."
-    REQUIRES bsp bt esp_event esp_hw_support esp_netif esp_timer esp_wifi nvs_flash
+    REQUIRES bsp esp_hw_support esp_timer nvs_flash
 )
